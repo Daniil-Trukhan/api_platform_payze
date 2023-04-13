@@ -1,0 +1,65 @@
+{
+    "name": "daniil-trukhan/api_platform_payze",
+    "type": "symfony-bundle",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": "8.2.*",
+        "api-platform/core": "^3",
+        "symfony/http-client": "^6",
+        "doctrine/annotations": "^1",
+        "doctrine/doctrine-bundle": "^2",
+        "doctrine/doctrine-migrations-bundle": "^3",
+        "doctrine/orm": "^2",
+        "phpstan/phpdoc-parser": "^1",
+        "symfony/dependency-injection": "*",
+        "symfony/dotenv": "*",
+        "symfony/flex": "^2",
+        "symfony/framework-bundle": "*",
+        "symfony/property-access": "*",
+        "symfony/property-info": "*",
+        "symfony/runtime": "*",
+        "symfony/security-bundle": "*",
+        "symfony/serializer": "*",
+        "symfony/validator": "*",
+        "symfony/yaml": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Trukhan\\Payze\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Trukhan\\Payze\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "require-dev": {
+        "doctrine/migrations": "^3"
+    }
+}

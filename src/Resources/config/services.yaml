@@ -1,0 +1,27 @@
+parameters:
+    payze_api_key: '%env(PAYZE_API_KEY)%'
+    payze_api_secret: '%env(PAYZE_API_SECRET)%'
+    payze_api_key_test: '%env(PAYZE_API_KEY_TEST)%'
+    payze_api_secret_test: '%env(PAYZE_API_SECRET_TEST)%'
+    payze_ips: '%env(csv:PAYZE_IPS)%'
+    payze_check_ips: '%env(PAYZE_CHECK_IPS)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Trukhan\Payze\:
+        resource: '../../'
+        exclude:
+            - '../../DependencyInjection/'
+            - '../../Entity/'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    Trukhan\Payze\Controller\:
+        resource: '../../Controller/'
+        tags: ['controller.service_arguments']
